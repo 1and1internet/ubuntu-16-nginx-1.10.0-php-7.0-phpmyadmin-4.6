@@ -1,0 +1,7 @@
+version: '2'
+services:
+  ubuntu-16-nginx-1.10.0-php-7.0-phpmyadmin-4.6:
+    build: .
+    image: ubuntu-16-nginx-1.10.0-php-7.0-phpmyadmin-4.6
+    ports:
+      - "8080:8080"
