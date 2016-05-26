@@ -2,20 +2,26 @@ FROM 1and1internet/ubuntu-16-nginx-1.10.0-php-7.0:unstable
 MAINTAINER james.eckersall@fasthosts.co.uk
 ARG DEBIAN_FRONTEND=noninteractive
 
+COPY files/ /
+
 RUN \
   curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz | tar xzf - && \
   mv phpMyAdmin*/* /var/www/html/ && \
-  rm -rf /var/www/html/js/jquery/src/ /var/www/html/examples /var/www/html/po/
+  rm -rf /var/www/html/js/jquery/src/ /var/www/html/examples /var/www/html/po/ && \
+  chmod 777 /var/www/html && \
+  chmod 755 /hooks /var/www /hooks/supervisord-pre.d/40_phpmyadmin_config_secret
 
-COPY files/ /
-
-ENV PHP_UPLOAD_MAX_FILESIZE=64M \
-    PHP_MAX_INPUT_VARS=2000     \
-    PMA_ARBITRARY=1             \
-    PMA_HOST=""                 \
-    PMA_PORT=3306               \
-    PMA_HOSTS=""                \
-    PMA_ABSOLUTE_URI=""
+ENV PHP_UPLOAD_MAX_FILESIZE=64M  \
+    PHP_MAX_INPUT_VARS=2000      \
+    PMA_ARBITRARY=1              \
+    PMA_HOST=""                  \
+    PMA_PORT=3306                \
+    PMA_HOSTS=""                 \
+    PMA_ABSOLUTE_URI=""          \
+    PMA_CONTROL_HOST=localhost   \
+    PMA_CONTROL_PORT=3306        \
+    PMA_CONTROL_USER=pma         \
+    PMA_CONTROL_PASSWORD=pma
 
 # variables explained:
 #   PMA_ARBITRARY - when set to 1 connection to the arbitrary server will be allowed
@@ -27,5 +33,3 @@ ENV PHP_UPLOAD_MAX_FILESIZE=64M \
 #   PHP_MAX_INPUT_VARS - define max_input_vars PHP setting
 
 EXPOSE 8080
-#USER 27
-
