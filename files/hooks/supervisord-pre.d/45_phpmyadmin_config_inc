@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ ! -f /var/www/html/config.inc.php ] ; then
+    cat > /var/www/html/config.inc.php <<EOT
+<?php
+\$i = 0;
+
+\$i++;
+\$cfg['Servers'][$i]['verbose'] = 'mysql';
+\$cfg['Servers'][$i]['host'] = 'localhost';
+\$cfg['Servers'][$i]['port'] = '';
+\$cfg['Servers'][$i]['socket'] = '';
+\$cfg['Servers'][$i]['connect_type'] = 'tcp';
+\$cfg['Servers'][$i]['auth_type'] = 'cookie';
+\$cfg['Servers'][$i]['user'] = '';
+\$cfg['Servers'][$i]['password'] = '';
+\$cfg['blowfish_secret'] = '`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`';
+\$cfg['DefaultLang'] = 'en';
+\$cfg['ServerDefault'] = 1;
+\$cfg['UploadDir'] = '';
+\$cfg['SaveDir'] = '';
+?>
+EOT
+fi
