@@ -14,7 +14,7 @@ RUN \
 ENV PHP_UPLOAD_MAX_FILESIZE=64M  \
     PHP_MAX_INPUT_VARS=2000      \
     PMA_ARBITRARY=1              \
-    PMA_HOST=""                  \
+    PMA_HOST=localhost           \
     PMA_PORT=3306                \
     PMA_HOSTS=""                 \
     PMA_ABSOLUTE_URI=""          \
