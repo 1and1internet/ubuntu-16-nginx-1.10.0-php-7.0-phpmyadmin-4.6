@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sed -i 's/$cfg[\'Servers\'][$i][\'port\'] = $_ENV[\'PMA_PORT\'];/$cfg[\'Servers\'][$i][\'port\'] = '"$PMA_POST"';/g' /var/www/html/config.inc.php
