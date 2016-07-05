@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 COPY files/ /
 
 RUN \
-  rm /var/www/html/index.html
+  rm /var/www/html/index.html && \
   curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz | tar xzf - && \
   mv phpMyAdmin*/* /var/www/html/ && \
   rm -rf /var/www/html/js/jquery/src/ /var/www/html/examples /var/www/html/po/ && \
