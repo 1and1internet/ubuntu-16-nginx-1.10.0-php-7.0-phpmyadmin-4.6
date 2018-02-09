@@ -10,7 +10,8 @@ RUN \
   mv phpMyAdmin*/* /var/www/html/ && \
   rm -rf /var/www/html/js/jquery/src/ /var/www/html/examples /var/www/html/po/ && \
   chmod 777 /var/www/html && \
-  chmod 755 /hooks /var/www /hooks/supervisord-pre.d/40_phpmyadmin_config_secret 
+  chmod 755 /hooks /var/www /hooks/supervisord-pre.d/40_phpmyadmin_config_secret  && \
+  sed -i "s|; max_input_vars = 1000|max_input_vars = 3000|" /etc/php/7.0/fpm/php.ini
 
 ENV PHP_UPLOAD_MAX_FILESIZE=64M  \
     PHP_MAX_INPUT_VARS=2000      \
