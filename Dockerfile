@@ -1,5 +1,5 @@
 FROM 1and1internet/ubuntu-16-nginx-php-7.2:latest
-MAINTAINER james.eckersall@1and1.co.uk
+MAINTAINER brian.wilkinson@1and1.co.uk
 ARG DEBIAN_FRONTEND=noninteractive
 
 COPY files/ /
