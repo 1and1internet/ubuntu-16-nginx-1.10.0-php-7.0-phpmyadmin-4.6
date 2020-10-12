@@ -55,8 +55,8 @@ class Test1and1Image(Test1and1Common):
     def test_php_gettext(self):
         self.check_success("gettexttest.php")
 
-    def test_php_imagick(self):
-        self.check_success("imagicktest.php")
+    #def test_php_imagick(self):
+    #    self.check_success("imagicktest.php")
 
     def test_php_imap(self):
         self.check_success("imaptest.php")
